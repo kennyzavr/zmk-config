@@ -17,13 +17,13 @@
 // |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | [ (Х) |
 // | CTRL  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   | ; (Ж) | ' (Э) |
 // | SHIFT |  Z  |  X  |  C   |  V   |  B   | ` (Ё)  | | \ (|)  |  N   |  M    | , (Б) | . (Ю) | / (?) | ] (Ъ) |
-//               | ALT | GUI  | LOWER| SPACE|                   | ENTER| RAISE | BSPC  | DEL  |
+//               | GUI | ALT  | = (+) | LOWER|  SPACE | | ENTER  | RAISE| BKSPC |  DEL  | GUI  |
             bindings = <
 &kp ESC   &kp N1 &kp N2 &kp N3 &kp N4 &kp N5                      &kp N6 &kp N7   &kp N8    &kp N9  &kp N0   &kp MINUS
 &kp TAB   &kp Q  &kp W  &kp E  &kp R  &kp T                       &kp Y  &kp U    &kp I     &kp O   &kp P    &kp LBKT
 &kp LCTRL &kp A  &kp S  &kp D  &kp F  &kp G                       &kp H  &kp J    &kp K     &kp L   &kp SEMI &kp SQT
 &kp LSHFT &kp Z  &kp X  &kp C  &kp V  &kp B  &kp GRAVE  &kp BSLH  &kp N  &kp M    &kp COMMA &kp DOT &kp FSLH &kp RBKT
-                 &kp LALT &kp LGUI &mo 1  &kp SPACE               &kp RET  &mo 2  &kp BSPC  &kp DEL
+                 &kp LGUI &kp LALT &kp EQUAL &mo 1  &kp SPACE     &kp RET  &mo 2  &kp BSPC  &kp DEL &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -31,17 +31,18 @@
 
         lower_layer {
 // ------------------------------------------------------------------------------------------------------------
+// СИМВОЛЫ: Буквенный ряд превращается в !@#$% ^&*() - это стандарт эрго-клавиатур
 // |  F1   |  F2 |  F3 |  F4  |  F5  |  F6  |                   |  F7  |  F8   |  F9   | F10  |  F11  |  F12  |
 // |       |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  _   |   +   |       |
 // |       |  {  |  }  |  (   |  )   |  |   |                   |  -   |  =    |  \    |  /   |   ?   |       |
 // |       |  [  |  ]  |  <   |  >   |  ~   |        | |        |      |       |       |      |       |       |
-//               |     |      |      |      |                   |      |       |       |      |
+//               |     |      |      |      |        | |        |      |       |       |      |
             bindings = <
 &kp F1    &kp F2   &kp F3   &kp F4   &kp F5   &kp F6                     &kp F7    &kp F8    &kp F9    &kp F10   &kp F11   &kp F12
 &trans    &kp EXCL &kp AT   &kp HASH &kp DLLR &kp PRCNT                  &kp CARET &kp AMPS  &kp STAR  &kp UNDER &kp PLUS  &trans
 &trans    &kp LBRC &kp RBRC &kp LPAR &kp RPAR &kp PIPE                   &kp MINUS &kp EQUAL &kp BSLH  &kp FSLH  &kp QMARK &trans
 &trans    &kp LBKT &kp RBKT &kp LT   &kp GT   &kp TILDE  &trans   &trans &trans    &trans    &trans    &trans    &trans    &trans
-                   &trans   &trans   &trans   &trans                     &trans    &trans    &trans    &trans
+                   &trans   &trans   &trans   &trans     &trans   &trans &trans    &trans    &trans    &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -49,17 +50,18 @@
 
         raise_layer {
 // ------------------------------------------------------------------------------------------------------------
+// НАВИГАЦИЯ: Слева медиа, справа Vim-стрелки (HJKL) и Home/End/PgUp/PgDn
 // | BTCLR | BT1 | BT2 | BT3  | BT4  | BT5  |                   |      |       |       |      |       | BLOAD |
 // |       |     | Prev| Play | Next |      |                   | Home | PgDn  | PgUp  | End  |       |       |
 // |       |     | Vol-| Vol+ | Mute |      |                   |  <-  |   v   |   ^   |  ->  |       |       |
 // |       |     |     |      |      |      |        | |        |      |       |       |      |       |       |
-//               |     |      |      |      |                   |      |       |       |      |
+//               |     |      |      |      |        | |        |      |       |       |      |
             bindings = <
 &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4             &trans   &trans    &trans    &trans  &trans &bootloader
 &trans     &trans       &kp C_PREV   &kp C_PP     &kp C_NEXT   &trans                   &kp HOME &kp PG_DN &kp PG_UP &kp END &trans &trans
 &trans     &trans       &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE   &trans                   &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &trans &trans
 &trans     &trans       &trans       &trans       &trans       &trans     &trans &trans &trans   &trans    &trans    &trans  &trans &trans
-                        &trans       &trans       &trans       &trans                   &trans   &trans    &trans    &trans
+                        &trans       &trans       &trans       &trans     &trans &trans &trans   &trans    &trans    &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
